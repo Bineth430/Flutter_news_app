@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_news_app/models/article_model.dart';
 import 'package:flutter_news_app/models/category_model.dart';
 import 'package:flutter_news_app/models/slider_model.dart';
 import 'package:flutter_news_app/services/data.dart';
+import 'package:flutter_news_app/services/news.dart';
 import 'package:flutter_news_app/services/slider_data.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -17,11 +19,22 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   List<CategoryModel> categories = [];
   List<sliderModel> sliders = [];
+  List<ArticleModel> articles = [];
+  bool _loading = true;
   @override
   void initState() {
     categories = getCategories();
     sliders = getSliders();
     super.initState();
+  }
+
+  getNews() async {
+    News newsclass = News();
+    await newsclass.getNews();
+    articles = newsclass.news;
+    setState(() {
+      _loading = false;
+    });
   }
 
   int activeIndex = 0;
