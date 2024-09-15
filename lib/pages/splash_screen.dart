@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_news_app/pages/home.dart';
+import 'package:flutter_news_app/Home/home.dart';
 import 'package:flutter_news_app/utils/custom_navigator.dart';
 
 class SplashScreen extends StatefulWidget {
